@@ -19,6 +19,8 @@ function PianoTiles() {
   const gridRef = useRef();
   const yOffsetRef = useRef(0);
 
+  const rowRefs = [];
+
   useEffect(() => {
     setInterval(() => {
       setComponents((current) => {
@@ -27,7 +29,7 @@ function PianoTiles() {
           ...current.slice(0, current.length - 1),
         ];
       });
-    }, 1000);
+    }, 500);
 
     // function animate() {
     //   yOffsetRef.current -= 2;
@@ -42,18 +44,12 @@ function PianoTiles() {
     <div className={styles.gridContainer}>
       <div ref={gridRef} className={styles.grid}>
         {components.map((component, i) => {
-          return <div key={i}>{component}</div>;
+          return (
+            <div key={i} className={styles.rowContainer}>
+              {component}
+            </div>
+          );
         })}
-        {/* <Row />
-        <Row />
-        <Row />
-        <Row />
-        <Row />
-        <Row />
-        <Row />
-        <Row />
-        <Row />
-        <Row /> */}
       </div>
     </div>
   );
